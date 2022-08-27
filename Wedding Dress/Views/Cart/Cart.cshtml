@@ -1,0 +1,138 @@
+﻿@model IEnumerable<Wedding_Dress.Models.Dress>
+
+@{
+    ViewBag.Title = "Cart";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+    <div class="table-responsive cart_info" style="padding-top:30px;">
+        @if (Model.Count() > 0)
+        {
+            int total_qty = 0;
+            int total_price = 0;
+            <table class="table">
+                <thead>
+                    <tr class="cart_menu" style="background-color:black;color:white;text-align:center" >
+                        <td>Picture</td>
+                        <td> Description</td>
+                        <td>Price</td>
+                        <td>Quantity</td>
+                        <td>Total</td>
+                        <td></td>
+                    </tr>
+                </thead>
+                <tbody>
+
+                    @foreach (var item in Model)
+                    {
+                        total_qty = total_qty + item.qty;
+                        int tqty = 0;
+
+                        tqty = item.Price * item.qty;
+                        total_price = total_price + tqty;
+
+                        String img64 = Convert.ToBase64String(item.Image);
+                        String img64Url = string.Format("data:image/" + item.type + ";base64,{0}", img64);
+                        <tr>
+                            <td >
+                                <a href=""><img src="@img64Url" alt="" style="width:70px;height:70px";></a>
+                            </td>
+                            <td>
+                                <h4><a href="">@item.Description</a></h4>
+                                
+                            </td>
+                            <td >
+                                <p>@item.Price /Rs / Days</p>
+                            </td>
+                            <td>
+                                <div class="quantity">
+                                    <table>
+                                        <tr>
+                                            <td>
+                                                <div class="entry value">
+                                                    <span><a href='@Url.Action("Decrease", "Cart", new { id = item.ID }) ' class="btn btn-default">-</a></span>
+                                                </div>
+                                            </td>
+                                            <td>
+                                                <div class="entry value" >
+                                                    <span class="btn btn-default" style="font-size:20px;background-color:black;color:white">@item.qty </span>
+                                                </div>
+                                            </td>
+                                            <td>
+                                                <div class="entry value">
+                                                    <span><a href='@Url.Action("Increase", "Cart", new { id = item.ID })' class="btn btn-default">+</a></span>
+                                                </div>
+                                            </td>
+                                        </tr>
+                                    </table>
+                                   
+                                </div>
+
+                            </td>
+                            <td>
+                                <p class="cart_total_price">@tqty</p>
+                            </td>
+                            <td class="cart_delete">
+                                <a href='@Url.Action("Remove", "Cart", new { id = item.ID })'  style="background-color:black;">X</a>
+                            </td>
+                        </tr>
+
+                    }
+
+
+                    </tbody>
+            </table>
+            <div class="row" style=" font-size:20px; font-weight:bold; text-align:center;">
+                
+                <div class="col-md-4">
+
+                    <br />
+                    
+                    Total Price: @total_price
+                </div>
+
+                <div class="col-md-4">
+                    <br />
+                    Total Quantity: @total_qty
+                </div>
+                <div class="col-md-4">
+                    <br />
+                    @using (Html.BeginForm("Rent", "Rent", FormMethod.Post, new { enctype = "multipart/form-data" }))
+                    {
+                        @Html.AntiForgeryToken()
+
+                        <div class="form-horizontal">
+                            <h4>Time Period</h4>
+                            <hr />
+                            @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+                            <div class="form-group">
+                               
+                                <div >
+                                    @Html.DropDownList("period", new SelectList(Enum.GetValues(typeof(period))), "Time Period", new { @class = "form-control", style = "text-align:left;font-size:20px;height:40px;border-radius:30px;" })
+                                    @Html.ValidationMessage("period", "", new { @class = "text-danger" })
+                                </div>
+                            </div>
+
+                            <div class="form-group">
+                                <div >
+                                    <input type="submit" value="Rent Request" class="btn btn-default" />
+                                </div>
+                            </div>
+                        </div>
+                    }
+
+                   
+                </div>
+            </div>
+        }
+
+        else
+        {
+            <h2>Empty Cart</h2>
+        }
+        <br />
+        <br />
+        <br />
+        <br />
+  
+        </div>

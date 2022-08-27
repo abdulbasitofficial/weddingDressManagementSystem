@@ -1,0 +1,247 @@
+﻿<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="">
+    <meta name="author" content="">
+    <title>Women</title>
+    <link href="~/css/animate.css" rel="stylesheet" />
+    <link href="~/css/bootstrap.min.css" rel="stylesheet" />
+    <link href="~/css/font-awesome.min.css" rel="stylesheet" />
+    <link href="~/css/main.css" rel="stylesheet" />
+    <link href="~/assets/css/jquery.simpleLens.css" rel="stylesheet" />
+    <link href="~/css/prettyPhoto.css" rel="stylesheet" />
+    <link href="~/assets/css/bootstrap.css" rel="stylesheet" />
+    <link href="~/assets/css/sequence-theme.modern-slide-in.css" rel="stylesheet" />
+    <link href="~/css/price-range.css" rel="stylesheet" />
+
+    <link href="~/assets/css/slick.css" rel="stylesheet" />
+    <link href="~/assets/css/font-awesome.css" rel="stylesheet" />
+    <link href="~/css/responsive.css" rel="stylesheet" />
+    <link href="css/bootstrap.min.css" rel="stylesheet">
+    <link href="~/assets/css/nouislider.css" rel="stylesheet" />
+    <link href="css/font-awesome.min.css" rel="stylesheet">
+    <link href="css/prettyPhoto.css" rel="stylesheet">
+    <link href="css/price-range.css" rel="stylesheet">
+    <link href="~/assets/css/style.css" rel="stylesheet" />
+    <link href="css/animate.css" rel="stylesheet">
+    <link href="css/main.css" rel="stylesheet">
+    <link href="css/responsive.css" rel="stylesheet">
+    <link href="css/font-awesome.css" rel="stylesheet">
+    <!-- Bootstrap -->
+    <link href="~/assets/css/bootstrap.css" rel="stylesheet">
+    <!-- SmartMenus jQuery Bootstrap Addon CSS -->
+    <link href="~/assets/css/jquery.smartmenus.bootstrap.css" rel="stylesheet">
+    <!-- Product view slider -->
+    <link rel="stylesheet" type="text/css" href="~/assets/css/jquery.simpleLens.css">
+    <!-- slick slider -->
+    <link rel="stylesheet" type="text/css" href="~/assets/css/slick.css">
+    <!-- price picker slider -->
+    <link rel="stylesheet" type="text/css" href="~/assets/css/nouislider.css">
+    <!-- Theme color -->
+    <link id="switcher" href="~/assets/css/theme-color/default-theme.css" rel="stylesheet">
+    <!-- <link id="switcher" href="css/theme-color/bridge-theme.css" rel="stylesheet"> -->
+    <!-- Top Slider CSS -->
+    <link href="~/assets/css/sequence-theme.modern-slide-in.css" rel="stylesheet" media="all">
+
+    <!-- Main style sheet -->
+    <link href="~/assets/css/style.css" rel="stylesheet">
+    <!--[if lt IE 9]>
+    <script src="js/html5shiv.js"></script>
+    <script src="js/respond.min.js"></script>
+    <![endif]-->
+    <link rel="shortcut icon" href="images/ico/favicon.ico">
+    <link rel="apple-touch-icon-precomposed" sizes="144x144" href="images/ico/apple-touch-icon-144-precomposed.png">
+    <link rel="apple-touch-icon-precomposed" sizes="114x114" href="images/ico/apple-touch-icon-114-precomposed.png">
+    <link rel="apple-touch-icon-precomposed" sizes="72x72" href="images/ico/apple-touch-icon-72-precomposed.png">
+    <link rel="apple-touch-icon-precomposed" href="images/ico/apple-touch-icon-57-precomposed.png">
+</head><!--/head-->
+
+<body>
+
+    <header id="aa-header">
+        <!-- start header top  -->
+        <div class="aa-header-top">
+            <div class="container">
+                <div class="row">
+                    <div class="col-md-12">
+                        <div class="aa-header-top-area">
+                            <!-- start header top left -->
+                            <div class="aa-header-top-left">
+
+                            </div>
+
+                            <!-- / header top left -->
+                            <div class="aa-header-top-right">
+                                <ul class="aa-head-top-nav-right">
+                                    @if (Session["email"] != null)
+                                    {
+                                        <li><a href="" data-toggle="modal" data-target="#login-modal" style="font-size:15px;font-weight:bold;color:black">@Session["name"]</a></li>
+                                        <li><a href='@Url.Action("LogOut","User")' data-toggle="modal" class="btn btn-danger" style="font-size:15px;font-weight:bold;color:white">LogOut</a></li>
+                                    }
+                                    else
+                                    {
+                                        <li><a href='@Url.Action("SignIn","User")' data-toggle="modal" class="btn btn-danger" style="font-size:15px;font-weight:bold;color:white">Sign In</a></li>
+                                        <li><a href='@Url.Action("SignUp","User")' data-toggle="modal" class="btn btn-danger" style="font-size:15px;font-weight:bold;color:white">Sign Up</a></li>
+                                    }
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <!-- / header top  -->
+        <!-- start header bottom  -->
+        <div class="aa-header-bottom">
+            <div class="container">
+                <div class="row">
+                    <div class="col-md-12">
+                        <div class="aa-header-bottom-area">
+                            <!-- logo  -->
+                            <div class="aa-logo">
+                                <!-- Text based logo -->
+                                <a href="index.html">
+                                    <p>Wedding <strong>Dress</strong> <span></span></p>
+                                </a>
+
+                                <!-- img based logo -->
+                                <!-- <a href="index.html"><img src="img/logo.jpg" alt="logo img"></a> -->
+                            </div>
+                            <!-- / logo  -->
+                            <!-- cart box -->
+                            @if (Session["email"] != null)
+                            {
+                                <div class="aa-cartbox">
+                                    <a class="aa-cart-link" href='@Url.Action("Cart","Cart")'>
+                                        <span class="fa fa-shopping-basket"></span>
+                                        <span class="aa-cart-title">CART</span>
+                                        <span class="aa-cart-notify"> @Session["Cart_Count"]</span>
+                                    </a>
+                                </div>
+                            }
+                            <!-- / cart box -->
+                            <!-- search box -->
+                            <div class="aa-search-box">
+                                <form action='@Url.Action("Search","Home")' method="post">
+                                    <input type="text" name="search" id="" placeholder="Search here Dresses ">
+                                    <button type="submit"><span class="fa fa-search"></span></button>
+                                </form>
+                            </div>
+                            <!-- / search box -->
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <!-- / header bottom  -->
+    </header>
+    <!-- / header section -->
+    <!-- menu -->
+    <section id="menu">
+        <div class="container">
+            <div class="menu-area">
+                <!-- Navbar -->
+                <div class="navbar navbar-default" role="navigation">
+                    <div class="navbar-header">
+                        <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
+                            <span class="sr-only">Toggle navigation</span>
+                            <span class="icon-bar"></span>
+                            <span class="icon-bar"></span>
+                            <span class="icon-bar"></span>
+                        </button>
+                    </div>
+                    <div class="navbar-collapse collapse">
+                        <!-- Left nav -->
+                        <ul class="nav navbar-nav">
+                            <li><a href='@Url.Action("Women","Home")'>Women</a></li>
+                            <li><a href='@Url.Action("Men","Home")'>Men</a></li>
+                            @if (Session["email"] != null)
+                            {
+                                <li><a href='@Url.Action("Dress","Dress")'>My Dress</a></li>
+                                <li><a href='@Url.Action("RentRequest","Rent")'>Request(@Session["count"])</a></li>
+                            }
+                        </ul>
+                    </div><!--/.nav-collapse -->
+                </div>
+            </div>
+        </div>
+    </section>
+
+    @*<section id="slider">
+        <!--slider-->
+        <div class="container">
+            <div class="row">
+                <div class="col-sm-12">
+                    <div id="slider-carousel" class="carousel slide" data-ride="carousel">
+
+
+                        <div class="carousel-inner">
+                            <div class="item active">
+                                <div class="col-sm-6">
+                                    <h1><span>Wedding</span>-Dress</h1>
+                                </div>
+                                <div class="col-sm-6">
+                                    <img src="~/images/home/girl1.jpg" class="girl img-responsive" alt="" />
+                                </div>
+                            </div>
+
+                        </div>
+
+
+                    </div>
+
+                </div>
+            </div>
+        </div>
+    </section><!--/slider-->*@
+
+    <section>
+        <div class="container">
+            <div class="row">
+                <div class="col-sm-12 padding-right">
+                    @RenderBody()
+
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <script src="js/bootstrap.js"></script>
+    <!-- SmartMenus jQuery plugin -->
+    <script type="text/javascript" src="~/assets/js/jquery.smartmenus.js"></script>
+    <!-- SmartMenus jQuery Bootstrap Addon -->
+    <script type="text/javascript" src="~/assets/js/jquery.smartmenus.bootstrap.js"></script>
+    <!-- To Slider JS -->
+    <script src="~/assets/js/sequence.js"></script>
+    <script src="js/sequence-theme.modern-slide-in.js"></script>
+    <!-- Product view slider -->
+    <script type="text/javascript" src="~/assets/js/jquery.simpleGallery.js"></script>
+    <script type="text/javascript" src="~/assets/js/jquery.simpleLens.js"></script>
+    <!-- slick slider -->
+    <script type="text/javascript" src="~/assets/js/slick.js"></script>
+    <!-- Price picker slider -->
+    <script type="text/javascript" src="~/assets/js/nouislider.js"></script>
+    <!-- Custom js -->
+    <script src="~/assets/js/custom.js"></script>
+
+
+    <script src="~/js/bootstrap.min.js"></script>
+    <script src="~/js/contact.js"></script>
+    <script src="~/js/gmaps.js"></script>
+    <script src="~/js/html5shiv.js"></script>
+    <script src="~/js/jquery.js"></script>
+    <script src="~/js/jquery.prettyPhoto.js"></script>
+    <script src="~/js/jquery.scrollUp.min.js"></script>
+    <script src="~/js/main.js"></script>
+    <script src="~/js/price-range.js"></script>
+
+    <script src="js/jquery.js"></script>
+    <script src="js/bootstrap.min.js"></script>
+    <script src="js/jquery.scrollUp.min.js"></script>
+    <script src="js/price-range.js"></script>
+    <script src="js/jquery.prettyPhoto.js"></script>
+    <script src="js/main.js"></script>
+</body>
+</html>

@@ -1,0 +1,59 @@
+﻿@model IEnumerable<Wedding_Dress.Models.Rent>
+
+@{
+    ViewBag.Title = "RentRequest";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h2 style="text-align:center">Rent Request</h2>
+@if (Model.Count()>0)
+{
+
+<table class="table">
+    <tr>
+        <th>
+            @Html.DisplayName("User Name")
+        </th>
+        <th>
+            @Html.DisplayName("User Address")
+        </th>
+        <th>
+            @Html.DisplayName("Request Date")
+        </th>
+        <th>Accept</th>
+        <th>Reject</th>
+        <th>Details</th>
+
+    </tr>
+
+@foreach (var item in Model) {
+<tr>
+    <td>
+        @Html.DisplayFor(modelItem => item.u_name)
+    </td>
+
+    <td>
+        @Html.DisplayFor(modelItem => item.r_address)
+    </td>
+    <td>
+        @Html.DisplayFor(modelItem => item.request_date)
+    </td>
+    <td>
+        @Html.ActionLink("Accept", "Accept", new { /* id=item.PrimaryKey */ })
+    </td>
+    <td>
+        @Html.ActionLink("Reject", "Reject", new { /* id=item.PrimaryKey */ })
+    </td>
+    <td>
+        @Html.ActionLink("Details", "Details", new { /* id=item.PrimaryKey */ })
+    </td>
+</tr>
+}
+                                  
+</table>
+}else
+{
+<h3>
+    NOt yet rent request
+</h3>
+}

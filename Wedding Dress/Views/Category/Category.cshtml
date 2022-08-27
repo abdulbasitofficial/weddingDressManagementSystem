@@ -1,0 +1,39 @@
+﻿@model IEnumerable<Wedding_Dress.Models.Category>
+
+@{
+    ViewBag.Title = "Category";
+}
+
+<h2>Category</h2>
+
+<p>
+    @Html.ActionLink("Add Category", "AddCategory")
+</p>
+<table class="table">
+    <tr>
+        <th>
+            @Html.DisplayNameFor(model => model.Name)
+        </th>
+        <th>
+            Update
+        </th>
+        <th>
+            Delete
+        </th>
+    </tr>
+
+@foreach (var item in Model) {
+    <tr>
+        <td>
+            @Html.DisplayFor(modelItem => item.Name)
+        </td>
+        <td>
+            @Html.ActionLink("Update", "Edit", new { id=item.ID }) 
+        </td>
+        <td>
+            @Html.ActionLink("Delete", "Delete", new { id=item.ID })
+        </td>
+    </tr>
+}
+
+</table>
